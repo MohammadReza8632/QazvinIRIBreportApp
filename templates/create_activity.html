@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+{% extends "base.html" %}
+{% load jalali_tags %}
+{% load static %}
+{% block title %}
+            QAZIRIB | بارگزاری گزارش
+{% endblock %}
+{% block css_files %}
+            <link rel="stylesheet" href="{% static 'css/create_activity.css' %}">
+            <link rel="stylesheet" href="{% static 'css/base.css' %}">
+            <link rel="stylesheet" href="{% static 'css/style.css' %}">
+            <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+            <script src="static/css/jquery.js"></script>
+{% endblock %}
+
+
+{% block content %}
+             <div class="menu-btn">
+               <i class="fas fa-bars"></i>
+             </div>
+<!-- Create sidebar for choosing task and taskbar -->
+      <div class="side-bar">
+
+            <div class="close-btn">
+              <i class="fas fa-times"></i>
+            </div>
+
+            <div class="menu">
+                {% for task in tasks %}
+                    {% if task.child_category == True %}
+                        <div class="item" >
+                            <div class="sub-btn" id="main-task">
+                                <a >{{task.name}}</a>
+                            </div>
+                                <div class="sub-menu">
+                                      {% for sub_task in sub_tasks %}
+                                        {% if task.name|stringformat:"s" ==  sub_task.parent_category|stringformat:"s" %}
+                                        <div id="sub-main-task">
+                                        <a class="sub-item">{{sub_task.name}}</a>
+                                        </div>
+                                        {% endif %}
+                                      {% endfor %}
+                                </div>
+                        </div>
+                    {% else %}
+                    <div class="item" id="main-task-again"><a>{{task.name}}</a></div>
+                    {% endif %}
+
+                {% endfor %}
+
+            </div>
+      </div>
+<!-- Some javascript inorder to facilitate choosing task and taskbar  -->
+                <!-- it should be moved to base.html  -->
+
+<!-- Create sidebar2 for choosing unit -->
+
+    <div class="side-bar2">
+         <div class="close-btn">
+              <i class="fas fa-times"></i>
+         </div>
+
+            <div class="menu2">
+                {% for unit in units %}
+                        <div class="item2" >
+                            <div class="sub-btn2" id="main-unit">
+                                <a >{{unit.name}}</a>
+                            </div>
+                        </div>
+                {% endfor %}
+            </div>
+      </div>
+<!-- Some javascript inorder to facilitate choosing units  -->
+            <!-- it should be moved to ase.html  -->
+<!-- Form itself  -->
+    <section class="container forms">
+
+       <div class="form signup">
+           <div class="form-content">
+               <header>ثبت گزارش</header>
+
+               <form method="POST"  enctype="multipart/form-data">
+                   {% csrf_token %}
+                   <div class="field input-field">
+                       <p class="task-title" >{{form.task}}</p>
+                   </div>
+
+                    <div class="field input-field">
+                       <p class="task-title">{{form.sub_task}}</p>
+                   </div>
+
+                   <div class="field input-field">
+                       <p class="unit">{{form.name}}</p>
+                   </div>
+
+                   <div class="field_image input-field">
+                       <p class="image">بارگزاری تصویر‌:{{form.image}}</p>
+                   </div>
+
+                   <div class="field input-field">
+                       <p class="created" >{{form.created}}</p>
+                   </div>
+
+                   <div class="field input-field">
+                       <p class="duration">{{form.duration}}</p>
+                   </div>
+
+                   <div class="field2 input-field">
+                       <p class="description">{{form.description}}</p>
+                   </div>
+
+                   <div class="field_image input-field">
+                       <p class="image">بارگزاری تصاویر بیشتر‌:{{form.more_images}}</p>
+                   </div>
+
+                   <div class="field button-field">
+                       <button>ذخیره</button>
+                   </div>
+               </form>
+
+           </div>
+       </div>
+</section>
+
+<!-- related to Jalali date  -->
+<link rel="stylesheet" href="{% static 'admin/jquery.ui.datepicker.jalali/themes/base/jquery-ui.min.css' %}">
+<script src="{% static 'admin/js/django_jalali.min.js' %}"></script>
+<div class="spacing"></div>
+{% endblock content %}

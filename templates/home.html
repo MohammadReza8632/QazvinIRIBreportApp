@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+            QAZIRIB | صفحه اصلی
+{% endblock %}
+{% block css_files %}
+            <link rel="stylesheet" href="{% static 'css/home.css' %}">
+            <link rel="stylesheet" href="{% static 'css/base.css' %}">
+            <link rel="stylesheet" href="{% static 'css/style.css' %}">
+            <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+            <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+{% endblock %}
+
+
+{% block content %}
+        <form class="search" method="get" action="#">
+            <input type="text" name="query" class="form-control" placeholder="۱۴۰۲-۰۱-۰۱ ویا کلیدواژه موردنظر">
+        </form>
+<div class="spacingtop"></div>
+    {% if activities %}
+    <div class="img-area">
+        <div class="wrappers">
+
+            {% for activity in activities %}
+
+            <div class="single-box">
+                <a href="{% url 'detail_activity' activity.pk %}"><img src="{{ activity.image.url }}" class="image" alt="Responsive image"></a>
+                <div class="overlay">
+                    <a href="{% url 'detail_activity' activity.id %}"><p class="caption">{{activity.name}}</p></a>
+                    <p class="task">{{activity.task}}</p>
+                    <p class="sub_task">{{activity.sub_task}}</p>
+                    {% if request.user.is_staff %}
+                        <p class="user">{{activity.str_user}}</p>
+                    {% endif %}
+                    <p class="created">{{activity.get_jalali_date}}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    {% else %}
+    <div class="incoming">
+        <h2>
+            درحال حاضر هیچ گزارشی ثبت نشده است
+        </h2>
+    </div>
+    {% endif %}
+
+<div class="spacing"></div>
+{% endblock content %}

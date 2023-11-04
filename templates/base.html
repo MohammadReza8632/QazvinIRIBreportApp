@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+{% load static %}
+
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+        {% block css_files %}
+            <link rel="stylesheet" href="{% static 'css/base.css' %}">
+            <link rel="stylesheet" href="{% static 'css/style.css' %}">
+            <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+            <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+            <script src="static/css/jquery.js"></script>
+        {% endblock %}
+
+  </head>
+
+  <body class="full-body">
+
+     <div class="logo">
+           <a href="{% url 'home' %}"><img src="{% static 'css/img/Qazvin-LOGO-Tr.png'%}" class="logo" alt=""></a>
+     </div>
+
+     <div class="title">
+         <h1>سامانه گزارش عملکرد</h1>
+         <h1>صدا و سیمای استان قزوین</h1>
+     </div>
+
+     <nav>
+         <input type="checkbox" id="check">
+         <label for="check" class="checkbtn">
+             <i class="fas fa-bars"></i>
+         </label>
+         {% if request.user.is_authenticated %}
+         <label class="user_info">کاربر محترم: {{full_name}} </label>
+         <ul style="direction:ltr;">
+                <li>
+                <a href="{% url 'logout' %}" class="logout" style="color:HotPink;">خروج</a>
+                </li>
+                <li><a href="{% url 'change_password'%}"> تغییر کلمه عبور </a></li>
+                <li><a href="{% url 'export'%}"> دریافت گزارش </a></li>
+                <li><a href="{% url 'create_activity'%}"> ثبت گزارش </a></li>
+             {% endif %}
+
+         </ul>
+     </nav>
+
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message" >
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+  {% block content %}
+  {% endblock %}
+         <!-- Some javascript inorder to facilitate choosing units  -->
+   <script type="text/javascript">
+           $(document).ready(function(){
+
+          $('.unit').click(function(){
+          $('.side-bar2').addClass('active');
+          });
+
+          $('.close-btn').click(function(){
+          $('.side-bar2').removeClass('active');
+          });
+        });
+        </script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+        $("#main-unit a").click(function(){
+        var value = $(this).html();
+        var input = $('#unit-activity-field');
+        input.val(value);
+        });
+        });
+        </script>
+     <!-- Some javascript inorder to facilitate choosing task and taskbar  -->
+  <script type="text/javascript">
+           $(document).ready(function(){
+          $('.sub-btn').click(function(){
+            $(this).next('.sub-menu').slideToggle();
+            $(this).find('.dropdown').toggleClass('rotate');
+          });
+
+          $('.menu-btn').click(function(){
+          $('.side-bar').addClass('active');
+          });
+          $('.task-title').click(function(){
+          $('.side-bar').addClass('active');
+          });
+
+          $('.close-btn').click(function(){
+          $('.side-bar').removeClass('active');
+          });
+        });
+        </script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+        $("#main-task a").click(function(){
+        var value = $(this).html();
+        var input = $('#main-activity-field');
+        input.val(value);
+        });
+        });
+        </script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+        $("#sub-main-task a").click(function(){
+        var value = $(this).html();
+        var input = $('#sub-main-activity-field');
+        input.val(value);
+        });
+        });
+        </script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+        $("#main-task-again a").click(function(){
+        var value = $(this).html();
+        var input = $('#main-activity-field');
+        input.val(value);
+        });
+        });
+        </script>
+    <footer>
+        <p>این برنامه توسط واحد پشتیبانی فنی و فناوری اطلاعات طراحی و پیاده سازی شده است، کلیه
+            حقوق مادی و معنوی آن متعلق به صدا و سیمای استان قزوین می باشد.  </p>
+
+    </footer>
+
+  </body>
+</html>

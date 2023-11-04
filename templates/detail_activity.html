@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+            QAZIRIB | صفحه جزئیات
+{% endblock %}
+{% block css_files %}
+            <link rel="stylesheet" href="{% static 'css/detail_activity.css' %}">
+            <link rel="stylesheet" href="{% static 'css/base.css' %}">
+            <link rel="stylesheet" href="{% static 'css/style.css' %}">
+            <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+            <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="spacing_on_top"></div>
+  <div class="small-container single-product">
+                <div class="row">
+                <div class="col-2">
+                    <img src="{{ activity.image.url }}" width="100%" id="ProductImg">
+                    <div class="row">
+                        {% for pi in activity.activityimages_set.all %}
+                        <div class="col-md-4 p-3">
+                            <a href="{{pi.image.url}}" target="blank">
+                                <img src="{{pi.image.url}}" class="img-fluid" style="height:100px; object-fit: contain;" alt="">
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-2">
+                    <h1>{{activity.name}}</h1>
+                    {% if request.user.is_staff %}
+                        <h4>نام کاربر: {{activity.str_user}}</h4>
+                    {% endif %}
+                    <h4>{{activity.task}} | {{activity.sub_task}}</h4>
+                    <h2>مدت زمان انجام فعالیت {{activity.duration}} ساعت</h2>
+                    <h5>{{activity.get_jalali_date}} </h5>
+                    <br/>
+                    <a href="{% url 'delete_activity' id=activity.id %}"><i onclick="return ConfirmDelete();" class="fa fa-trash fa-2x" aria-hidden="true" style="color:white;"></i></a>
+                    <a href="{% url 'home' %}"><i class="fa fa-home" style="font-size:34px;color:OrangeRed"></i></a>
+                    <a href="{% url 'edit_activity' activity.id %}"><i class="fa fa-edit" style="font-size:34px;color:white"></i></a>
+                    <a href="{% url 'detail_activity_download' activity.id %}"><i class="fa fa-download" aria-hidden="true" style="font-size:34px;"></i></a>
+                </div>
+            </div>
+  </div>
+<br>
+<br>
+        <div class="detail">
+            <h1>توضیحات:</h1>
+            <h2>{{activity.description}}</h2>
+
+        </div>
+<div class="spacing"></div>
+<script>
+    function ConfirmDelete()
+    {
+      return confirm("از حذف این آیتم اطمینان دارید؟");
+    }
+</script>
+{% endblock content %}

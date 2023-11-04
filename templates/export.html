@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+            QAZIRIB | صفحه اصلی
+{% endblock %}
+{% block css_files %}
+            <link rel="stylesheet" href="{% static 'css/home.css' %}">
+            <link rel="stylesheet" href="{% static 'css/base.css' %}">
+            <link rel="stylesheet" href="{% static 'css/style.css' %}">
+            <link rel="stylesheet" href="{% static 'css/all.min.css' %}">
+            <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+{% endblock %}
+
+
+{% block content %}
+ <form class="search" method="get" action="#">
+         <input type="text" name="query" class="form-control" placeholder="۱۴۰۲-۰۱-۰۱/ویا کلیدواژه موردنظر">
+ </form>
+
+{% endblock content %}

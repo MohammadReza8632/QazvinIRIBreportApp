@@ -21,7 +21,7 @@ def home(request):
         group = request.user.groups.all()[0].name
         task = Task.objects.all()
         sub_task = SubTask.objects.all()
-        activities = Activity.objects.filter(name=group)
+        activities = Activity.objects.filter(name=group)[0:12]
         full_name = request.user.get_full_name()
 
         for x in activities:
@@ -48,7 +48,7 @@ def home(request):
         print("employee")
         task = Task.objects.all()
         sub_task = SubTask.objects.all()
-        activities = Activity.objects.filter(user=request.user)
+        activities = Activity.objects.filter(user=request.user)[0:12]
         full_name = request.user.get_full_name()
 
         for x in activities:
@@ -92,6 +92,10 @@ def create_activity(request):
     sub_tasks = SubTask.objects.all()
     units = Unit.objects.all()
     full_name = request.user.get_full_name()
+    my_group = request.user.groups.all()[0].name
+    users = User.objects.filter(groups__name=my_group)
+    for x in users:
+        print(x.get_full_name())
 
     context = {
         'form': activity_form,
@@ -99,6 +103,7 @@ def create_activity(request):
         'sub_tasks': sub_tasks,
         'units': units,
         'full_name': full_name,
+        'users': users,
     }
 
     return render(request, 'create_activity.html', context)
@@ -147,6 +152,8 @@ def edit_activity(request, id):
     sub_tasks = SubTask.objects.all()
     units = Unit.objects.all()
     full_name = request.user.get_full_name()
+    my_group = request.user.groups.all()[0].name
+    users = User.objects.filter(groups__name=my_group)
 
     context = {
         'form': form,
@@ -155,6 +162,7 @@ def edit_activity(request, id):
         'units': units,
         'activity_image': activity.image,
         'full_name': full_name,
+        'users': users,
     }
 
     return render(request, 'edit_activity.html', context)
@@ -186,6 +194,9 @@ def export(request):
                 p = document.add_paragraph("مدت زمان انجام فعالیت")
                 p.add_run(str(x.duration))
                 p.add_run("ساعت")
+                if x.colleague:
+                    p = document.add_paragraph("مشارکت همکار / همکاران:")
+                    p = document.add_paragraph(x.colleague)
                 p = document.add_paragraph(":تاریخ انجام فعالیت")
                 p = document.add_paragraph(str(date2jalali(x.created)))
 
@@ -226,6 +237,9 @@ def export(request):
                 p = document.add_paragraph("مدت زمان انجام فعالیت")
                 p.add_run(str(x.duration))
                 p.add_run("ساعت")
+                if x.colleague:
+                    p = document.add_paragraph(":مشارکت همکار / همکاران")
+                    p = document.add_paragraph(x.colleague)
                 p = document.add_paragraph(":تاریخ انجام فعالیت")
                 p = document.add_paragraph(str(date2jalali(x.created)))
 
@@ -242,6 +256,11 @@ def export(request):
             document.save(response)
             return response
 
+        my_group = request.user.groups.all()[0].name
+        users = User.objects.filter(groups__name=my_group)
+        for x in users:
+            print("x", x.get_full_name())
+            print("my_group", my_group)
         return render(request, 'export.html', {'full_name': full_name})
 
 
@@ -263,6 +282,9 @@ def detail_activity_download(request, id):
     p = document.add_paragraph("مدت زمان انجام فعالیت")
     p.add_run(str(activity.duration))
     p.add_run("ساعت")
+    if activity.colleague:
+        p = document.add_paragraph(":با مشارکت همکار / همکاران")
+        p = document.add_paragraph(activity.colleague)
     p = document.add_paragraph(":تاریخ انجام فعالیت")
     p = document.add_paragraph(str(date2jalali(activity.created)))
 
@@ -285,7 +307,7 @@ class PasswordsChangeView(PasswordChangeView):
     success_url = reverse_lazy('password_success')
     template_name = "change_password.html"
 
-    def get_context_data(self):
+    def get_context_data(self,  **kwargs):
         current_loggedin_user = self.request.user.get_full_name()
         context = {'full_name': current_loggedin_user}
         return context

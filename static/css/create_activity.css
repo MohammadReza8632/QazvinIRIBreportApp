@@ -258,6 +258,60 @@ line-height: 50px;
     margin: 25px;
     cursor: pointer;
 }
+/* tne next part is sidebar3 styling */
+
+.side-bar3{
+    background: black;
+    backdrop: blur(150px);
+    width: 390px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right : -100%;
+    overflow-y: auto;
+    transition: 0.9s ease;
+    transition-property: right;
+
+}
+
+.side-bar3.active{
+    right: 0;
+}
+
+.side-bar3 .menu3{
+    width: 100%;
+    margin-top: 80px;
+}
+
+
+.side-bar3 .menu3 .item3{
+    position: relative;
+    cursor: pointer;
+}
+
+.side-bar3 .menu3 .item3 a{
+color: white;
+font-size: 22px;
+display: block;
+padding: 5px 30px;
+line-height: 50px;
+}
+.icon{
+    background-color: blue;
+}
+
+.side-bar3 .menu3 .item3 i{
+    margin-left: -15%;
+    color: white;
+}
+.close-btn{
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    right: 0;
+    margin: 25px;
+    cursor: pointer;
+}
 /* space between footer and form */
 .spacing{
 padding-bottom: 2%;

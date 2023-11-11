@@ -14,7 +14,7 @@ class ActivityForm(forms.ModelForm):
 
     class Meta:
         model = Activity
-        fields = ['task', 'sub_task', 'name', 'image', 'created', 'duration', 'description']
+        fields = ['task', 'sub_task', 'name', 'image', 'created', 'duration', 'colleague', 'description']
         widgets = {
             'description': forms.Textarea(attrs={'rows': 2, 'cols': 38}),
         }
@@ -30,7 +30,9 @@ class ActivityForm(forms.ModelForm):
         self.fields['name'].widget.attrs['placeholder'] = "انتخاب واحد"
         self.fields['name'].widget.attrs['id'] = "unit-activity-field"
         self.fields['duration'].widget.attrs['placeholder'] = "مدت زمان انجام فعالیت(ساعت)"
-        self.fields['description'].widget.attrs['placeholder'] = "توضیحات "
+        self.fields['colleague'].widget.attrs['placeholder'] = "انتخاب همکار"
+        self.fields['colleague'].widget.attrs['id'] = "colleague-activity-field"
+        self.fields['description'].widget.attrs['placeholder'] = "   توضیحات "
 
 
 class PasswordChangingForm(PasswordChangeForm):

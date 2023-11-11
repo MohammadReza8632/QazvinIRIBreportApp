@@ -36,6 +36,9 @@
                         <h4>نام کاربر: {{activity.str_user}}</h4>
                     {% endif %}
                     <h4>{{activity.task}} | {{activity.sub_task}}</h4>
+                    {% if activity.colleague %}
+                    <h4>  مشارکت  همکاران : {{activity.colleague}}</h4>
+                    {% endif %}
                     <h2>مدت زمان انجام فعالیت {{activity.duration}} ساعت</h2>
                     <h5>{{activity.get_jalali_date}} </h5>
                     <br/>

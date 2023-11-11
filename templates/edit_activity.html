@@ -116,6 +116,23 @@
                 {% endfor %}
             </div>
       </div>
+<!-- Create sidebar3 for choosing colleague -->
+
+    <div class="side-bar3">
+         <div class="close-btn">
+              <i class="fas fa-times"></i>
+         </div>
+
+            <div class="menu3">
+                {% for colleague in users %}
+                        <div class="item3" >
+                            <div class="sub-btn3" id="main-colleague">
+                                <a >{{colleague.get_full_name}}</a>
+                            </div>
+                        </div>
+                {% endfor %}
+            </div>
+      </div>
 <!-- Some javascript inorder to facilitate choosing task and taskbar  -->
         <script type="text/javascript">
            $(document).ready(function(){
@@ -135,6 +152,28 @@
         var value = $(this).html();
         var input = $('#unit-activity-field');
         input.val(value);
+        });
+        });
+        </script>
+ <!-- Some javascript inorder to facilitate choosing colleague  -->
+        <script type="text/javascript">
+           $(document).ready(function(){
+
+          $('.colleague').click(function(){
+          $('.side-bar3').addClass('active');
+          });
+
+          $('.close-btn').click(function(){
+          $('.side-bar3').removeClass('active');
+          });
+        });
+        </script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+        $("#main-colleague a").click(function(){
+        var value = $(this).html();
+        var input = $('#colleague-activity-field');
+        input.val(input.val()+ '   ' + value );
         });
         });
         </script>
@@ -175,6 +214,10 @@
 
                    <div class="field input-field">
                        <p class="duration">{{form.duration}}</p>
+                   </div>
+
+                   <div class="field input-field">
+                       <p class="colleague">{{form.colleague}}</p>
                    </div>
 
                    <div class="field2 input-field">

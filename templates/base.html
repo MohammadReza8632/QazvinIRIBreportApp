@@ -44,7 +44,7 @@
                 <li>
                 <a href="{% url 'logout' %}" class="logout" style="color:HotPink;">خروج</a>
                 </li>
-                <li><a href="{% url 'change_password'%}"> تغییر کلمه عبور </a></li>
+                <li><a href="{% url 'change_password'%}"> تغییر رمز عبور </a></li>
                 <li><a href="{% url 'export'%}"> دریافت گزارش </a></li>
                 <li><a href="{% url 'create_activity'%}"> ثبت گزارش </a></li>
              {% endif %}
@@ -82,6 +82,28 @@
         var value = $(this).html();
         var input = $('#unit-activity-field');
         input.val(value);
+        });
+        });
+        </script>
+      <!-- Some javascript inorder to facilitate choosing colleague  -->
+   <script type="text/javascript">
+           $(document).ready(function(){
+
+          $('.colleague').click(function(){
+          $('.side-bar3').addClass('active');
+          });
+
+          $('.close-btn').click(function(){
+          $('.side-bar3').removeClass('active');
+          });
+        });
+        </script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+        $("#main-colleague a").click(function(){
+        var value = $(this).html();
+        var input = $('#colleague-activity-field');
+        input.val(input.val()+ '   ' + value );
         });
         });
         </script>

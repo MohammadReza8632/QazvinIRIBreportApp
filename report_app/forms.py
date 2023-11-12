@@ -16,7 +16,7 @@ class ActivityForm(forms.ModelForm):
         model = Activity
         fields = ['task', 'sub_task', 'name', 'image', 'created', 'duration', 'colleague', 'description']
         widgets = {
-            'description': forms.Textarea(attrs={'rows': 2, 'cols': 38}),
+            'description': forms.Textarea(attrs={'rows': 2, 'cols': 28}),
         }
 
     def __init__(self, *args, **kwargs):

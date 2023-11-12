@@ -73,6 +73,7 @@ nav ul li a{
     margin-right: 40px;
     cursor: pointer;
     display: none;
+
 }
 
 #check{
@@ -97,10 +98,10 @@ nav ul li a{
     }
     ul{
         position: fixed;
-        width: 100%;
+        width: 70%;
         height: 100vh;
         background: black;
-        top: 550px;
+        top: 30%;
         left: -100%;
         text-align: center;
         transition: all .5s;

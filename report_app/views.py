@@ -21,7 +21,7 @@ def home(request):
         group = request.user.groups.all()[0].name
         task = Task.objects.all()
         sub_task = SubTask.objects.all()
-        activities = Activity.objects.filter(name=group)[0:12]
+        activities = Activity.objects.filter(name=group)
         full_name = request.user.get_full_name()
 
         for x in activities:
@@ -48,7 +48,7 @@ def home(request):
         print("employee")
         task = Task.objects.all()
         sub_task = SubTask.objects.all()
-        activities = Activity.objects.filter(user=request.user)[0:12]
+        activities = Activity.objects.filter(user=request.user)
         full_name = request.user.get_full_name()
 
         for x in activities:

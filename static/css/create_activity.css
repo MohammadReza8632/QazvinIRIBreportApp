@@ -132,6 +132,7 @@ form .field2{
     overflow-y: auto;
     transition: 0.9s ease;
     transition-property: right;
+    z-index: 1001;
 
 }
 
@@ -217,6 +218,7 @@ line-height: 50px;
     overflow-y: auto;
     transition: 0.9s ease;
     transition-property: right;
+    z-index: 1001;
 
 }
 
@@ -271,6 +273,7 @@ line-height: 50px;
     overflow-y: auto;
     transition: 0.9s ease;
     transition-property: right;
+    z-index: 1001;
 
 }
 
@@ -322,7 +325,7 @@ padding-bottom: 2%;
     width: 80px;
     height: 80px;
     left: 1.7%;
-    top: 40%;
+    top: 35%;
 }
 
 .edited_image img{
@@ -335,4 +338,23 @@ padding-bottom: 2%;
 /* spacingforimage in edit_activity */
 .spacingforimage{
 padding-bottom: 20%;
+}
+
+@media (max-width: 992px){
+    .container{
+            padding-bottom: 500px;
+            padding-top: 100%;
+            height: 100vh;
+             }
+    .form{
+        width: 90%;
+        border-radius: 3px;
+        background-color: white;
+        }
+    form .field{
+        width: 90%;
+        }
+     .field2 {
+        width: 90%;
+        }
 }

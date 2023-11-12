@@ -35,9 +35,11 @@
 
      <nav>
          <input type="checkbox" id="check">
+         {% if request.user.is_authenticated %}
          <label for="check" class="checkbtn">
              <i class="fas fa-bars"></i>
          </label>
+         {% endif %}
          {% if request.user.is_authenticated %}
          <label class="user_info">کاربر محترم: {{full_name}} </label>
          <ul style="direction:ltr;">

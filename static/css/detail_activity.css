@@ -131,3 +131,9 @@ padding-bottom: 12%;
 .spacing_on_top{
 padding-bottom: 6%;
 }
+
+@media (max-width: 992px){
+    .detail{
+    padding-bottom: 30%;
+    }
+}

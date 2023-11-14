@@ -49,7 +49,7 @@ class Activity(models.Model):
     image = models.ImageField(null=True, blank=True, upload_to="images/")
     description = models.TextField(blank=True, max_length=1000)
     duration = models.PositiveIntegerField(null=True, blank=True)
-    colleague = models.CharField(User, max_length=100, null=True)
+    colleague = models.CharField(User, max_length=100, null=True, blank=True)
     created = models.DateTimeField(default=timezone.now)
     shamsi = models.CharField(max_length=10, null=True)
     str_user = models.CharField(max_length=50, null=True)

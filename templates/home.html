@@ -15,7 +15,7 @@
 
 
 {% block content %}
-        <form class="search" method="get" action="#">
+        <form class="search" method="get" >
             <input type="text" name="query"  placeholder="۱۴۰۲-۰۱-۰۱ / جستجوی کلیدواژه " style="height:70%;">
         </form>
 <div class="spacingtop"></div>
@@ -26,7 +26,11 @@
             {% for activity in activities %}
 
             <div class="single-box">
+                {% if activity.image.url is not null %}
                 <a href="{% url 'detail_activity' activity.pk %}"><img src="{{ activity.image.url }}" class="image" alt="Responsive image"></a>
+                {% else %}
+                <a href="{% url 'detail_activity' activity.pk %}"><img src="{% static 'css/img/empty_image.jpeg'%}" class="image" alt="Responsive image"></a>
+                {% endif %}
                 <div class="overlay">
                     <a href="{% url 'detail_activity' activity.id %}"><p class="caption">{{activity.name}}</p></a>
                     <p class="task">{{activity.task}}</p>

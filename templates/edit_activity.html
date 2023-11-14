@@ -203,7 +203,9 @@
                    <div class="spacingforimage"></div>
 
                    <div class="edited_image" style="position: absolute;">
+                        {% if activity.image.url is not null %}
                        <img src="{{activity_image.url}}">
+                        {% endif %}
                    </div>
 
                    <div class="field input-field">

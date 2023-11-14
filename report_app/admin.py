@@ -18,7 +18,7 @@ class SubTaskAdmin(admin.ModelAdmin):
 @admin.register(Activity)
 class ActivityAdmin(admin.ModelAdmin):
     list_display = ['task', 'sub_task', 'name', 'slug', 'id',
-                    'description', 'created', 'duration']
+                    'image', 'description', 'created', 'duration']
     list_filter = ['name', 'created']
     list_editable = ['name']
     prepopulated_fields = {'slug': ('name',)}

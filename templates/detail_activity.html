@@ -19,7 +19,11 @@
   <div class="small-container single-product">
                 <div class="row">
                 <div class="col-2">
+                    {% if activity.image.url is not null %}
                     <img src="{{ activity.image.url }}" width="100%" id="ProductImg">
+                    {% else %}
+                    <img src="{% static 'css/img/empty_image2.png'%}" width="100%" id="ProductImg1">
+                    {% endif %}
                     <div class="row">
                         {% for pi in activity.activityimages_set.all %}
                         <div class="col-md-4 p-3">

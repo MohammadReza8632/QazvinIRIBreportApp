@@ -1,6 +1,6 @@
 .container{
     margin-top: 50px;
-    height: 100vh;
+    height: 150vh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -15,6 +15,7 @@
     border-radius: 3px;
     background-color: white;
     margin-button: 100px;
+    top: 30%;
 
 }
 
@@ -24,10 +25,7 @@
     font-weight: 500;
 }
 
-form{
-    margin-top: 30px;
 
-}
 
 form .field{
     height: 45px;
@@ -125,9 +123,10 @@ form .field2{
     background: black;
     backdrop: blur(150px);
     width: 390px;
-    height: 100vh;
+    height: 80%;
     position: fixed;
-    top: 0;
+    overflow-y: scroll;
+    top: 21.5%;
     right : -100%;
     overflow-y: auto;
     transition: 0.9s ease;
@@ -211,9 +210,10 @@ line-height: 50px;
     background: black;
     backdrop: blur(150px);
     width: 390px;
-    height: 100vh;
+    height: 80%;
     position: fixed;
-    top: 0;
+    overflow-y: scroll;
+    top: 21.5%;
     right : -100%;
     overflow-y: auto;
     transition: 0.9s ease;
@@ -266,9 +266,10 @@ line-height: 50px;
     background: black;
     backdrop: blur(150px);
     width: 390px;
-    height: 100vh;
+    height: 80%;
     position: fixed;
-    top: 0;
+    overflow-y: scroll;
+    top: 21.5%;
     right : -100%;
     overflow-y: auto;
     transition: 0.9s ease;
@@ -356,5 +357,15 @@ padding-bottom: 20%;
         }
      .field2 {
         width: 90%;
+        }
+        .side-bar{
+        top:0;
+        }
+        .side-bar2{
+        top:0;
+        }
+        .side-bar3{
+        top:0;
+        }
         }
 }

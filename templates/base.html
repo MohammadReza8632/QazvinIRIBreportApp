@@ -23,35 +23,32 @@
   </head>
 
   <body class="full-body">
+ {% if request.user.is_authenticated %}
+         <div class="topnav" ">
+              <a class="active" href="{% url 'home' %}"><img src="{% static 'css/img/logo.png'%}" style="width:120px"></a>
+              <a class="webtitle" style="margin: 12px auto;"><h2>سامانه گزارش عملکرد</h2></a>
+              <a class="username" style="margin: 40px auto; color:white; ">{{full_name}}</a>
+              <div class="search-container">
+                <form class="test" method="get">
+                  <input type="text" placeholder="جستجو" name="query">
+                  <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
 
-     <div class="logo">
-           <a href="{% url 'home' %}"><img src="{% static 'css/img/Qazvin-LOGO-Tr.png'%}" class="logo" alt=""></a>
-     </div>
+                <a href="{% url 'logout' %}"><i class="fa fa-sign-out-alt fa-2x" aria-hidden="true" style="transform: rotate(180deg); color:HotPink; margin: 40px auto; margin-left: 0px; float: left; margin-left: 10px"></i></a>
+              </div>
+        </div>
 
-     <div class="title">
-         <h1>سامانه گزارش عملکرد</h1>
-         <h1>صدا و سیمای استان قزوین</h1>
-     </div>
+        <div class="topnav2" >
+              <a href="{% url 'home' %}">خانه </a>
+              <a href="{% url 'create_activity'%}">ثبت گزارش </a>
+              <a href="{% url 'export'%}">دریافت گزارش</a>
+              <a href="{% url 'change_password'%}">تغییر رمز عبور</a>
+        </div>
+ {% endif %}
 
      <nav>
          <input type="checkbox" id="check">
-         {% if request.user.is_authenticated %}
-         <label for="check" class="checkbtn">
-             <i class="fas fa-bars"></i>
-         </label>
-         {% endif %}
-         {% if request.user.is_authenticated %}
-         <label class="user_info">کاربر محترم: {{full_name}} </label>
-         <ul style="direction:ltr;">
-                <li>
-                <a href="{% url 'logout' %}" class="logout" style="color:HotPink;">خروج</a>
-                </li>
-                <li><a href="{% url 'change_password'%}"> تغییر رمز عبور </a></li>
-                <li><a href="{% url 'export'%}"> دریافت گزارش </a></li>
-                <li><a href="{% url 'create_activity'%}"> ثبت گزارش </a></li>
-             {% endif %}
 
-         </ul>
      </nav>
 
 

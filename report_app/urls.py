@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import home, create_activity, detail_activity, delete_activity, edit_activity, export, detail_activity_download, PasswordsChangeView, password_success
+from .views import home, create_activity, detail_activity, delete_activity, edit_activity, export, detail_activity_download, PasswordsChangeView, password_success, change_activity_status
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import PasswordChangeView
@@ -14,6 +14,7 @@ urlpatterns = [
     path('<int:id>/delete-activity', delete_activity, name='delete_activity'),
     path('detail_activity/<int:id>/edit-activity', edit_activity, name='edit_activity'),
     path('detail_activity/<int:id>/detail_activity_download', detail_activity_download, name='detail_activity_download'),
+    path('detail_activity/<int:id>/change_activity_status', change_activity_status, name='change_activity_status'),
     path("export", export, name="export"),
 
 ]

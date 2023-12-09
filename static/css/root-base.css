@@ -1,0 +1,176 @@
+*{
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    margin: 0; height: 100%; overflow: hidden;
+}
+
+.full-body{
+    background: url('../css/img/background_img.jpg');
+    background-size: cover;
+    background-position: 50% 50%;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.logo{
+    width: 40%;
+    margin: auto;
+    display: block;
+    margin-top: 0%;
+}
+
+.title{
+    margin: 0% 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+nav{
+    height:5%;
+    width: 100%;
+}
+
+label.user_info{
+    color: white;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 80px;
+    padding: 0 100px;
+    float: right;
+}
+
+nav ul{
+    float: left;
+    margin-right: 20px;
+}
+
+nav ul li{
+    display: inline-block;
+    line-height: 45px;
+    margin: 0 20px;
+    font-weight: bold;
+}
+
+nav ul li a{
+    color: white;
+    font-size: 20px;
+    padding: 7px 13px;
+}
+
+.checkbtn{
+    font-size: 30px;
+    color: white;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+
+}
+
+#check{
+    display: none;
+}
+@media (max-width: 952px){
+
+    label.user_info{
+        font-size: 22px;
+        padding-right: 10px;
+        line-height: 40px;
+    }
+    nav ul li a{
+        font-size: 16px;
+    }
+
+    body{
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
+
+    }
+
+    .logo{
+    width: 60%;
+    margin: auto;
+    display: block;
+    margin-top: 0%;
+}
+
+    .title{
+
+    width: 100%;
+    color: white;
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 0;
+}
+
+}
+
+@media (max-width: 858px){
+    .checkbtn{
+        display: block;
+    }
+    ul{
+        position: fixed;
+        width: 70%;
+        height: 100vh;
+        background: black;
+        top: 30%;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+        z-index: 9990;
+    }
+    nav ul li{
+        display: block;
+        margin: 50px 0;
+        line-height: 2
+        0px;
+
+    }
+    nav ul li a{
+        font-size: 20px;
+    }
+    #check:checked ~ ul{
+        left: 0;
+    }
+    logo{
+    width: 50%;
+    max-width: 500px;
+    margin: auto;
+    display: block;
+    margin-top: 0%;
+}
+}
+
+footer{
+    padding-buttom: 30%;
+    height:auto;
+    width: 100%;
+    background-color: black;
+    position: fixed; bottom: 0; right: 0; left: 0;
+
+}
+
+footer p{
+    color: white;
+    text-align: center;
+}
+
+.message{
+    text-align: center;
+    font-size: 1.5rem;
+    color:Gold;
+    font-weight: bold;
+    margin: 1% auto;
+}

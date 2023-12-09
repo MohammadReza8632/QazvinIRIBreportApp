@@ -1,0 +1,170 @@
+
+.incoming{
+    margin: 0px 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+}
+
+.img-area{
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%
+    min-height: 100vh;
+    padding: 20px;
+    padding-top: 5%;
+}
+
+.wrappers{
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 50px 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-auto-rows: 280px;
+    grid-auto-flow: dense;
+    grid-gap: 25px;
+    width: 100%;
+
+
+}
+
+.single-box{
+    position: relative;
+
+}
+
+
+.single-box a{
+    display: block;
+    width: 280px;
+    height: 280px;
+    overflow: hidden;
+}
+
+.single-box img{
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.9s;
+    user-select: none;
+
+}
+
+
+@media (max-width: 992px){
+    .img-area{
+        padding: 7%;
+    }
+    .wrappers{
+        max-width: 100%;
+    }
+    .search input{
+        margin-right: -300%;
+    }
+
+    .img-area{
+    padding-bottom: 20%;
+    }
+
+}
+
+.overlay{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 280px;
+    width: 280px;
+    opacity: 0;
+    transition: .5s ease;
+    backdrop-filter: blur(900px);
+}
+
+.caption{
+    width: 100%;
+    color: white;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    display:inline-block
+}
+
+.task{
+    width: 100%;
+    color: white;
+    font-size: 1.7rem;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    display:inline-block
+}
+
+.sub_task{
+    width: 100%;
+    color: white;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    display:inline-block
+}
+.user{
+    width: 100%;
+    color: white;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    display:inline-block
+}
+
+.created{
+    width: 100%;
+    color: white;
+    font-size: 1.2rem;
+    position: absolute;
+    top: 80%;
+    left: 25%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    display:inline-block
+}
+.single-box:hover .overlay{
+    opacity: 1;
+}
+/* space between footer and form */
+.spacing{
+padding-bottom: 5%;
+
+}
+.spacingtop{
+padding-top: 0%;
+
+}
+
+.search{
+margin-right:83%;
+height:75px;
+width:25%;
+}
+
+/* overlay for small screen */
+
+

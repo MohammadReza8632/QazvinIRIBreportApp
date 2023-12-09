@@ -4,19 +4,20 @@ from jalali_date.widgets import AdminJalaliDateWidget
 from .models import Activity, ActivityImages
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
-
+from django.core.exceptions import ValidationError
+from .validators import validate_file_size
 
 class ActivityForm(forms.ModelForm):
-    more_images = forms.FileField(required=False, widget=forms.FileInput(attrs={
+    more_images = forms.ImageField(required=False, validators=[validate_file_size], widget=forms.FileInput(attrs={
         "class": "form-control",
-        "multiple": True
+        "multiple": True,
     }))
 
     class Meta:
         model = Activity
         fields = ['task', 'sub_task', 'name', 'image', 'created', 'duration', 'colleague', 'description']
         widgets = {
-            'description': forms.Textarea(attrs={'rows': 2, 'cols': 28}),
+            'description': forms.Textarea(attrs={'rows': 2, 'cols': 38}),
         }
 
     def __init__(self, *args, **kwargs):

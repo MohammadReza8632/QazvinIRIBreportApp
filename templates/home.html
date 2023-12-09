@@ -15,21 +15,22 @@
 
 
 {% block content %}
-        <form class="search" method="get" >
-            <input type="text" name="query"  placeholder="۱۴۰۲-۰۱-۰۱ / جستجوی کلیدواژه " style="height:70%;">
-        </form>
+
 <div class="spacingtop"></div>
     {% if activities %}
     <div class="img-area">
         <div class="wrappers">
-
             {% for activity in activities %}
-
             <div class="single-box">
                 {% if activity.image.url is not null %}
-                <a href="{% url 'detail_activity' activity.pk %}"><img src="{{ activity.image.url }}" class="image" alt="Responsive image"></a>
+                    <a href="{% url 'detail_activity' activity.pk %}"><img src="{{ activity.image.url }}" class="image" alt="Responsive image"></a>
+                    {% if request.user.is_staff %}
+                        {% if activity.validation == False %}
+                            <i class="fa fa-exclamation-triangle" ></i>
+                        {% endif %}
+                    {% endif %}
                 {% else %}
-                <a href="{% url 'detail_activity' activity.pk %}"><img src="{% static 'css/img/empty_image.jpeg'%}" class="image" alt="Responsive image"></a>
+                    <a href="{% url 'detail_activity' activity.pk %}"><img src="{% static 'css/img/empty_image.jpeg'%}" class="image" alt="Responsive image"></a>
                 {% endif %}
                 <div class="overlay">
                     <a href="{% url 'detail_activity' activity.id %}"><p class="caption">{{activity.name}}</p></a>
@@ -38,7 +39,11 @@
                     {% if request.user.is_staff %}
                         <p class="user">{{activity.str_user}}</p>
                     {% endif %}
+                    {% if request.user.is_superuser %}
+                        <p class="user">{{activity.str_user}}</p>
+                    {% endif %}
                     <p class="created">{{activity.get_jalali_date}}</p>
+
                 </div>
             </div>
             {% endfor %}

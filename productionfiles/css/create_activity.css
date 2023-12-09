@@ -1,0 +1,360 @@
+.container{
+    margin-top: 50px;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 30px;
+}
+
+.form{
+    max-width: 430px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 3px;
+    background-color: white;
+    margin-button: 100px;
+
+}
+
+.form-content header{
+    justify-content: center !important;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+form{
+    margin-top: 30px;
+
+}
+
+form .field{
+    height: 45px;
+    width: 365px;
+    margin-top: 5px;
+}
+
+form .field_image{
+    height: 45px;
+    width: 50%;
+    margin-top: 30px;
+}
+
+.field input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+
+}
+
+
+.field p {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+
+}
+.field2 p {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+
+}
+form .field2{
+    height: 75px;
+    width: 100%;
+    margin-top: 10px;
+}
+.field2 input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+
+}
+.field2 input{
+
+    padding: 0 15px;
+    border: 1px solid #CACACA;
+}
+
+.field button{
+
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: red;
+    color: white;
+
+}
+
+.field input{
+
+    padding: 0 15px;
+    border: 1px solid #CACACA;
+}
+
+.form-link{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.form-link span,
+.form-link a{
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.form a{
+    text-decoration: none;
+}
+
+/* tne next part is sidebar styling */
+
+.side-bar{
+    background: black;
+    backdrop: blur(150px);
+    width: 390px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right : -100%;
+    overflow-y: auto;
+    transition: 0.9s ease;
+    transition-property: right;
+    z-index: 1001;
+
+}
+
+.side-bar.active{
+    right: 0;
+}
+
+.side-bar .menu{
+    width: 100%;
+    margin-top: 80px;
+}
+
+
+.side-bar .menu .item{
+    position: relative;
+    cursor: pointer;
+}
+
+.side-bar .menu .item a{
+color: white;
+font-size: 22px;
+display: block;
+padding: 5px 30px;
+line-height: 50px;
+}
+.icon{
+    background-color: blue;
+}
+
+.side-bar .menu .item i{
+    margin-left: -15%;
+    color: white;
+}
+
+.side-bar .menu .item a .dropdown{
+    position: absolute;
+    left: 100px;
+    margin: 20px;
+    transition: 0.3s ease;
+}
+
+.side-bar .menu .item .sub-menu{
+    background: rgba(255, 255, 255, 0.1);
+    display: none;
+}
+
+.side-bar .menu .item .sub-menu a{
+    padding-left: 80px;
+}
+
+.rotate{
+    transform: rotate(-90deg);
+}
+
+.close-btn{
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    right: 0;
+    margin: 25px;
+    cursor: pointer;
+}
+
+
+.menu-btn{
+    position: absolute;
+    color: white;
+    font-size: 30px;
+    margin: 25px;
+    cursor: pointer;
+}
+
+/* tne next part is sidebar2 styling */
+
+.side-bar2{
+    background: black;
+    backdrop: blur(150px);
+    width: 390px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right : -100%;
+    overflow-y: auto;
+    transition: 0.9s ease;
+    transition-property: right;
+    z-index: 1001;
+
+}
+
+.side-bar2.active{
+    right: 0;
+}
+
+.side-bar2 .menu2{
+    width: 100%;
+    margin-top: 80px;
+}
+
+
+.side-bar2 .menu2 .item2{
+    position: relative;
+    cursor: pointer;
+}
+
+.side-bar2 .menu2 .item2 a{
+color: white;
+font-size: 22px;
+display: block;
+padding: 5px 30px;
+line-height: 50px;
+}
+.icon{
+    background-color: blue;
+}
+
+.side-bar2 .menu2 .item2 i{
+    margin-left: -15%;
+    color: white;
+}
+.close-btn{
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    right: 0;
+    margin: 25px;
+    cursor: pointer;
+}
+/* tne next part is sidebar3 styling */
+
+.side-bar3{
+    background: black;
+    backdrop: blur(150px);
+    width: 390px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right : -100%;
+    overflow-y: auto;
+    transition: 0.9s ease;
+    transition-property: right;
+    z-index: 1001;
+
+}
+
+.side-bar3.active{
+    right: 0;
+}
+
+.side-bar3 .menu3{
+    width: 100%;
+    margin-top: 80px;
+}
+
+
+.side-bar3 .menu3 .item3{
+    position: relative;
+    cursor: pointer;
+}
+
+.side-bar3 .menu3 .item3 a{
+color: white;
+font-size: 22px;
+display: block;
+padding: 5px 30px;
+line-height: 50px;
+}
+.icon{
+    background-color: blue;
+}
+
+.side-bar3 .menu3 .item3 i{
+    margin-left: -15%;
+    color: white;
+}
+.close-btn{
+    position: absolute;
+    color: white;
+    font-size: 20px;
+    right: 0;
+    margin: 25px;
+    cursor: pointer;
+}
+/* space between footer and form */
+.spacing{
+padding-bottom: 2%;
+}
+/* related to edited uploading img */
+.edited_image {
+
+    width: 80px;
+    height: 80px;
+    left: 1.7%;
+    top: 35%;
+}
+
+.edited_image img{
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+/* spacingforimage in edit_activity */
+.spacingforimage{
+padding-bottom: 20%;
+}
+
+@media (max-width: 992px){
+    .container{
+            padding-bottom: 500px;
+            padding-top: 100%;
+            height: 100vh;
+             }
+    .form{
+        width: 90%;
+        border-radius: 3px;
+        background-color: white;
+        }
+    form .field{
+        width: 90%;
+        }
+     .field2 {
+        width: 90%;
+        }
+}

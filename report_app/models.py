@@ -3,6 +3,7 @@ from django.utils import timezone
 from django.utils.text import slugify
 from jalali_date import date2jalali, datetime2jalali
 from django.contrib.auth.models import User
+from .validators import validate_file_size
 
 
 class Task(models.Model):
@@ -46,20 +47,22 @@ class Activity(models.Model):
                                 null=True, blank=True, max_length=100)
     name = models.CharField(Unit, max_length=100)
     slug = models.SlugField(max_length=200)
-    image = models.ImageField(null=True, blank=True, upload_to="images/")
+    image = models.ImageField(null=True, blank=True, upload_to="images/", validators=[validate_file_size])
     description = models.TextField(blank=True, max_length=1000)
     duration = models.PositiveIntegerField(null=True, blank=True)
     colleague = models.CharField(User, max_length=100, null=True, blank=True)
     created = models.DateTimeField(default=timezone.now)
     shamsi = models.CharField(max_length=10, null=True)
     str_user = models.CharField(max_length=50, null=True)
+    validation = models.BooleanField(default=False)
 
     def get_jalali_date(self):
         return date2jalali(self.created)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super(Activity, self).save(*args, **kwargs)
+        value = self.description[0:250]
+        self.slug = slugify(value, allow_unicode=True)
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ['-created']
@@ -75,7 +78,7 @@ class Activity(models.Model):
 
 class ActivityImages(models.Model):
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to="images/")
+    image = models.ImageField(upload_to="images/", validators=[validate_file_size])
     name = models.CharField(max_length=255, null=True)
 
     def __str__(self):

@@ -37,7 +37,10 @@
                 <div class="col-2">
                     <h1>{{activity.name}}</h1>
                     {% if request.user.is_staff %}
-                        <h4>نام کاربر: {{activity.str_user}}</h4>
+                        <h4>گزارش مرتبط با : {{activity.str_user}}</h4>
+                    {% endif %}
+                    {% if request.user.is_superuser %}
+                        <h4>گزارش مرتبط با : {{activity.str_user}}</h4>
                     {% endif %}
                     <h4>{{activity.task}} | {{activity.sub_task}}</h4>
                     {% if activity.colleague %}
@@ -46,10 +49,23 @@
                     <h2>مدت زمان انجام فعالیت {{activity.duration}} ساعت</h2>
                     <h5>{{activity.get_jalali_date}} </h5>
                     <br/>
-                    <a href="{% url 'delete_activity' id=activity.id %}"><i onclick="return ConfirmDelete();" class="fa fa-trash fa-2x" aria-hidden="true" style="color:white;"></i></a>
+                    {% if request.user.is_staff %}
+                        {% if activity.validation == True %}
+                        <p style="font-weight: bold;">وضعیت گزارش : تایید شده</p>
+                        {% endif %}
+                        {% if activity.validation == False %}
+                            <p style="font-weight: bold;">وضعیت گزارش : عدم تایید</p>
+                        {% endif %}
+                    {% endif %}
+                    {% if activity.validation == False %}
+                        <a href="{% url 'delete_activity' id=activity.id %}"><i onclick="return ConfirmDelete();" class="fa fa-trash fa-2x" aria-hidden="true" style="color:white;"></i></a>
+                    {% endif %}
                     <a href="{% url 'home' %}"><i class="fa fa-home" style="font-size:34px;color:OrangeRed"></i></a>
                     <a href="{% url 'edit_activity' activity.id %}"><i class="fa fa-edit" style="font-size:34px;color:white"></i></a>
                     <a href="{% url 'detail_activity_download' activity.id %}"><i class="fa fa-download" aria-hidden="true" style="font-size:34px;"></i></a>
+                    {% if request.user.is_staff %}
+                        <a href="{% url 'change_activity_status' activity.pk %}"><i onclick="return ConfirmSend();" class="fa fa-check-circle" style="font-size:34px; color: #00FF00"></i></a>
+                    {% endif %}
                 </div>
             </div>
   </div>
@@ -61,10 +77,18 @@
 
         </div>
 <div class="spacing"></div>
+<!-- javascript for delete conformation -->
 <script>
     function ConfirmDelete()
     {
       return confirm("از حذف این آیتم اطمینان دارید؟");
+    }
+</script>
+<!-- javascript for send conformation -->
+<script>
+    function ConfirmSend()
+    {
+      return confirm("از ارسال این آیتم اطمینان دارید؟");
     }
 </script>
 {% endblock content %}

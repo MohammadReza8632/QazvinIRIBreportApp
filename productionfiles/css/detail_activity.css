@@ -1,0 +1,139 @@
+.small-container{
+    max-width: 1000px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 20px;
+}
+
+.row{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.single-product{
+    margin-top: 80px;
+}
+
+.col-2 img{
+    max-width: 100%;
+    padding: 50px 0;
+}
+
+.single-product .col-2 img{
+    padding: 0;
+}
+
+.single-product .col-2{
+    padding: 20px;
+}
+.col-2{
+    flex-basis: 50%;
+    min-width: 300px;
+
+}
+
+.col-2 h1{
+    font-size: 29px;
+    line-height: 60px;
+    margin: 25px 0;
+    color: white;
+}
+
+.single-product select{
+    display: block;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.single-product h4{
+    margin: 20px 0;
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+}
+
+.single-product h2{
+    color: white;
+    display: inline-block;
+    font-size: 17px;
+}
+
+.single-product h5{
+    color: #00FF00	;
+    display: inline-block;
+    font-size: 17px;
+}
+
+.single-product input{
+    width: 50px;
+    height: 40px;
+    padding-left: 10px;
+    font-size: 20px;
+    margin-tight: 10px;
+    border: 1px solid #ff523b;
+
+}
+
+input:focus{
+    outline: none;
+}
+a{
+    text-decoration: none;
+    color: #555;
+}
+
+.single-product .fa{
+    color: #ff523b;
+    margin-left: 10px;
+}
+p{
+    color: white;
+}
+
+.btn{
+    display: inline-block;
+    background: #ff523b;
+    color: #fff;
+    padding: 8px 30px;
+    margin: 30px 0;
+    margin-top: 25px;
+
+
+    transition: background 0.5s;
+}
+.btn:hover{
+    background: #563434;
+}
+
+.detail h1{
+    font-size: 23px;
+    max-width: 1000px;
+    margin: auto;
+    padding-left: 15px;
+    padding-right: 20px;
+    color: white;
+}
+.detail h2{
+    max-width: 1000px;
+    margin: auto;
+    padding-left: 2px;
+    padding-right: 20px;
+    color: white;
+    font-size: 19px;
+}
+/* space between footer and post */
+.spacing{
+padding-bottom: 12%;
+}
+/* space between header and post */
+.spacing_on_top{
+padding-bottom: 6%;
+}
+
+@media (max-width: 992px){
+    .detail{
+    padding-bottom: 30%;
+    }
+}

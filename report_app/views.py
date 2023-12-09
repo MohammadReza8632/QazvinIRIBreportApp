@@ -13,11 +13,36 @@ from jalali_date import date2jalali, datetime2jalali
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.forms import PasswordChangeForm
-
+from django.contrib import messages
 
 @login_required
 def home(request):
+    if request.user.is_superuser:
+        group = request.user.groups.all()[0].name
+        task = Task.objects.all()
+        sub_task = SubTask.objects.all()
+        activities = Activity.objects.filter(name=group, validation=True)
+        full_name = request.user.get_full_name()
+        for x in activities:
+            x.shamsi = date2jalali(x.created)
+            x.save()
+        query = request.GET.get('query', '')
+        if query:
+            activities = activities.filter(
+                Q(task__icontains=query) | Q(sub_task__icontains=query) | Q(name__icontains=query) | Q(
+                    created__icontains=query) | Q(shamsi__icontains=query) | Q(str_user__icontains=query))
+        context = {
+
+            'task': task,
+            'sub_task': sub_task,
+            'activities': activities,
+            'full_name': full_name,
+
+        }
+        return render(request, 'home.html', context)
+
     if request.user.is_staff:
+
         group = request.user.groups.all()[0].name
         task = Task.objects.all()
         sub_task = SubTask.objects.all()
@@ -45,7 +70,7 @@ def home(request):
         return render(request, 'home.html', context)
 
     else:
-        print("employee")
+
         task = Task.objects.all()
         sub_task = SubTask.objects.all()
         activities = Activity.objects.filter(user=request.user)
@@ -75,7 +100,9 @@ def home(request):
 def create_activity(request):
     if request.method == 'POST':
         activity_form = ActivityForm(request.POST, request.FILES, request.user)
-        if activity_form.is_valid:
+        if activity_form.is_valid():
+            temp = activity_form.cleaned_data.get("image")
+            print(temp)
             obj = activity_form.save(commit=False)
             obj.user = request.user
             obj.str_user = request.user.get_full_name()
@@ -170,11 +197,11 @@ def edit_activity(request, id):
 
 @login_required
 def export(request):
-    if request.user.is_staff:
+    if request.user.is_staff | request.user.is_superuser:
         group = request.user.groups.all()[0].name
         response = HttpResponse(content_type="application/ms-word")
         response["content-Disposition"] = 'attachment;filename=report' + str(datetime.datetime.now()) + '.docx'
-        activities = Activity.objects.filter(name=group)
+        activities = Activity.objects.filter(name=group, validation=True)
         activityimages = ActivityImages.objects.all()
         full_name = request.user.get_full_name()
 
@@ -199,8 +226,8 @@ def export(request):
                     p = document.add_paragraph(x.colleague)
                 p = document.add_paragraph(":تاریخ انجام فعالیت")
                 p = document.add_paragraph(str(date2jalali(x.created)))
-
-                document.add_picture(x.image, width=Inches(3.9))
+                if x.image:
+                    p = document.add_picture(x.image, width=Inches(3.9))
                 paragraph = document.add_paragraph()
                 run = paragraph.add_run()
                 for y in activityimages:
@@ -242,8 +269,8 @@ def export(request):
                     p = document.add_paragraph(x.colleague)
                 p = document.add_paragraph(":تاریخ انجام فعالیت")
                 p = document.add_paragraph(str(date2jalali(x.created)))
-
-                document.add_picture(x.image, width=Inches(3.9))
+                if x.image:
+                    document.add_picture(x.image, width=Inches(3.9))
                 paragraph = document.add_paragraph()
                 run = paragraph.add_run()
                 for y in activityimages:
@@ -273,7 +300,7 @@ def detail_activity_download(request, id):
 
     activityimages = ActivityImages.objects.all()
     document = Document()
-    activity
+
     document.add_heading(activity.name, 0)
     p = document.add_paragraph(str(activity.str_user))
     p = document.add_paragraph(activity.task)
@@ -287,8 +314,8 @@ def detail_activity_download(request, id):
         p = document.add_paragraph(activity.colleague)
     p = document.add_paragraph(":تاریخ انجام فعالیت")
     p = document.add_paragraph(str(date2jalali(activity.created)))
-
-    document.add_picture(activity.image, width=Inches(3.9))
+    if activity.image:
+        document.add_picture(activity.image, width=Inches(3.9))
     paragraph = document.add_paragraph()
     run = paragraph.add_run()
     for y in activityimages:
@@ -307,7 +334,7 @@ class PasswordsChangeView(PasswordChangeView):
     success_url = reverse_lazy('password_success')
     template_name = "change_password.html"
 
-    def get_context_data(self,  **kwargs):
+    def get_context_data(self, **kwargs):
         current_loggedin_user = self.request.user.get_full_name()
         context = {'full_name': current_loggedin_user}
         return context
@@ -317,3 +344,13 @@ class PasswordsChangeView(PasswordChangeView):
 def password_success(request):
     full_name = request.user.get_full_name()
     return render(request, 'password_success.html', {'full_name': full_name})
+
+
+@login_required
+def change_activity_status(request, id):
+    validation = request.GET.get('validation', False)
+    activity = Activity.objects.get(pk=id)
+    activity.validation = True
+    activity.save()
+    print(activity.validation)
+    return redirect('home')
